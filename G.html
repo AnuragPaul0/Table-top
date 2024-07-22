@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html> <head> <link rel="icon" type="image/x-icon" href=
+    "https://avatars.githubusercontent.com/u/95966972?v=4">
+    <title>G</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style> :root {color-scheme: dark
+    /* --h: calc(16px*30); --w: calc(var(--h)/(1+1/var(--i))); --i: 3; */
+   }
+/* .square {
+  height: var(--h);
+  width: calc(var(--w));
+  border: 1px solid rgb(255, 0, 0);
+  text-align: center; */
+  /* 9/16 */
+  /* background-color: #555; */
+/* } */
+/* .lb { position:relative;
+  height: var(--h);
+  width: calc(var(--w));
+  border-top: 1px solid rgb(255, 0, 0);
+  transform: rotate(45deg);
+  transform-origin: 0% 0%;
+}
+.lu { position:absolute;
+  height: var(--h);
+  width: calc(var(--w));
+  border-bottom: 1px solid rgb(255, 0, 0);
+  transform: rotate(-45deg);
+  transform-origin: 0% 0%;
+}
+.lm { position:absolute;
+  height: var(--h);
+  width: calc(var(--w));
+  border-top: 1px solid rgb(255, 0, 0);
+  transform: translate(0, calc(var(--h)/2));
+}
+.lc { position:absolute;
+  height: var(--h);
+  width: calc(var(--w));
+  border-left: 1px solid rgb(255, 0, 0);
+  transform: translate(calc(var(--w)/2));
+} */
+</style> </head>
+
+<body> <script> console.clear(), sh = window.innerHeight, i = 3, wf = (1+1/i), sw = sh/wf
+hf = 5/8, h = sh*hf
+// 500
+w = h/wf, g = (1-hf)*sh/2, r = sw/40, lg = (1-hf)*sw/2, rc = (1+hf)*sw/2, bes = sh - g/2 - 40
+sca = 4 // up-pl
+cly = (13/2 + 5)*sca, yc = g/2 - cly
+// `<g stroke="grey" stroke-width="4" fill="black"> <circle cx="${lg + 40}" cy="${g/2}" r="40"/>
+//      <circle cx="${vr}" cy="${g/2}" r="40"/>
+//     <circle cx="${sw/2}" cy="${g/2}" r="40"/> </g>`
+// Prefilled 2D-Array:
+ar = (r, c) => Array(r).fill().map(() => Array(c).fill(0)), z = [-1, 0]
+ve = { u: 0, l: z, m: z, r: z, b: 0
+  // , v: 'lmr'
+}
+ul = { o: 'up', p: 'path', i: 'ul', c: 'grey', ...ve
+// object ,'doStuff': function() {
+//     alert(this.a + this.b); }
+}, ll = { o: 'dn', p: 'rect', i: 'll', c: 'yellow', ...ve }, d = document
+
+l = (y, l) => `<g id = '${l.i}' stroke="" stroke-linecap="round" stroke-linejoin="round"
+stroke-width="1">
+  <path id='l' d="M${lg + 40} ${y}h${w/2 - 40}"/> <path id='r' d="M${sw/2 + 1} ${y}h${w/2 - 40}"/>
+  </g>`
+
+  if (Math.round(Math.random())) {li = ll} else {li = ul}
+cen = sw/2 - 40, t = g - 40, tcx = [lg-3*(sca-1), sw/2-(18/2+3)*sca, rc - 22*sca]
+wh = `width="80" height="80"`, lol = sh - g - 40, m = sh/2 - 40, vl = lg - 40, vr = rc - 40
+xco = (l, m, r) => [l - 40, m, r + 40], trcx = xco(tcx[0], tcx[1], tcx[2]), rb = rc - 80
+// trbx = xco(lg, cen, rb)
+trcy = [g, sh/2, sh - g].map(e => e - cly - sca)
+// console.log('trcy, g',trcy, g)
+// <g id = 'up'> </g>
+// <g id='dn' > </g> 
+
+c = (x, i) => `<path class='up' transform="translate(${x}, ${yc}) scale(${sca})" id = '${i}'
+  stroke="grey" fill="black" stroke-linecap="round" stroke-linejoin="round"
+  stroke-width="1"d="M3 13.6493C3 16.6044
+  5.41766 19 8.4 19L16.5 19C18.9853 19 21 16.9839 21 14.4969C21 12.6503
+  19.8893 10.9449 18.3 10.25C18.1317 7.32251 15.684 5 12.6893 5C10.3514 5 8.34694 6.48637 7.5
+  8.5C4.8 8.9375 3 11.2001 3 13.6493Z"/>`, dq = x => d.querySelector(x)
+ye = (x, i) => `<rect class='dn' id='${i}' stroke = "yellow" style="opacity:1.0000000;
+fill:green; fill-opacity:1.0000000;fill-rule:evenodd;
+      stroke-width:4.0000000;stroke-linecap:round;stroke-linejoin:round;
+      stroke-miterlimit:4.0000000;
+      stroke-dasharray:none;stroke-dashoffset:0.00000000;stroke-opacity:1.0000000" x="${x}"
+      y="${bes}" ${wh}/>`
+
+str = (s = '') => {el.setAttribute('stroke', s)}, modo = q => d.querySelectorAll(q), mou = 'mouse'
+
+move = (l) => { el = dq('#' + l.i), str(l.c)
+// Add an abortable event listener
+controller = new AbortController();
+msi = { signal: controller.signal }
+    // console.log('controller', controller)
+    // This handler will be executed only once when the cursor
+// moves over
+modo('.' + li.o).forEach( e => { e.addEventListener(
+  mou+"enter", (
+  // event
+) => {
+    // mouseenter target event
+    str()
+
+    // reset the color after a short delay
+  //   setTimeout(() => {
+  //     event.target.style.color = ""
+  //   }, 500)
+  }, msi
+  // ,false,
+)
+
+// Briefly, when the mouse moves off the element
+e.addEventListener(
+  mou + "leave", (
+  // event
+) => {
+    // mouseleave target
+    str(l.c)
+  }, msi ) } ) }
+// fill = "transparent"
+s = d.body.innerHTML += `<center> <svg viewBox = '0 0 ${sw} ${sh}' height = ${sh
+  } style=" position: absolute; top:0; bottom: 0; left: 0; right: 0;
+
+    margin: auto;"> ${l(g/2, ul)}` +
+
+  `<g transform="translate(${lg}, ${g})" stroke = "red">
+    <path id='i0' class='c0' d="M0 0h${w}"/> <path id='Infinity' class='c2' d="M${w} 0v${h}"/>
+    <path id='i0' class='c2' d="M${w} ${h}H0"/>
+    <path id='Infinity' class='c0' d="M0 0v${h}"/>
+    <path id='i-1' d="M0 0l${w} ${h}"/>
+    <path id='i1' d=" M0 ${h}L${w} 0"/>
+    <path id='Infinity' class='c1' d="M${w/2} 0v${h}"/>
+    <path id='i0' class='c1' d="M0 ${h/2}h${w}"/>
+    <path d="M0 0h${r} A${r} ${r}, 0, 0, 1, 0 ${r}z M0 ${h} h${r} a${r} ${r}, 0, 0, 0, ${-r} ${-r
+    }z M${w} 0 v${r} a${r} ${r}, 0, 0, 1, ${-r} ${-r}z M${w} ${h} v${-r} a${r} ${r}, 0, 0, 0, ${-r
+    } ${r}z" fill = "black"/>
+    <circle cx="${w/2}" cy="${h/2}" r="40" fill="black"/>
+    <circle cx="${w/2}" cy="${h/2}" r="4" fill="red"/> </g> ${l(sh - g/2, ll)}` +
+
+    `<g fill="transparent" id ='tr'>
+      <rect x="${vl}" y="${t}" ${wh} id ='00'/>
+      <rect x="${vr}" y="${t}" ${wh} id ='20'/>
+      <rect x="${cen}" y="${t}" ${wh} id ='10'/>
+      <rect x="${vl}" y="${m}" ${wh} id ='01'/>
+      <rect x="${vr}" y="${m}" ${wh} id ='21'/>
+      <rect x="${cen}" y="${m}" ${wh} id ='11'/>
+      <rect x="${vl}" y="${lol}" ${wh} id ='02'/>
+      <rect x="${vr}" y="${lol}" ${wh} id ='22'/>
+      <rect x="${cen}" y="${lol}" ${wh} id ='12'/> </g>` +
+
+`${c(tcx[0], 'l')} ${c(tcx[2], 'r')} ${c(tcx[1], 'm')}` +
+
+  `${ye(lg, 'l')} ${ye(rb, 'r')} ${ye(cen, 'm')} </svg> </center>`
+    move(li)
+
+setAttributes = (el, attrs) => {
+  for(var key in attrs) {
+    el.setAttribute(key, attrs[key]); } }, gat = (el, x) => el.getAttribute(x)
+
+eap = (el) => {
+  // console.log(el)
+  dq('svg').append(el
+// dq('.' + li.o)
+)}
+
+est = (l) => {
+  // console.log('r')
+  li = l, nto(li, () => { move(li) } ), cont.abort(), contp.abort(), rou(l) }
+
+// check collinearity with area of triangle
+fin = (l) => { if (modo(`.${li.o}.i`).length == 3) {
+  a = li.l[0]*(li.m[1] - li.r[1]) - li.l[1]*(li.m[0] - li.r[0]) + li.m[0]*li.r[1] -
+  li.r[0]*li.m[1], console.log(li, x, a); if (!a) { m = 
+    // Math.abs(
+  // tan(
+    -(li.m[0] - li.r[0]) / (li.m[1] - li.r[1])
+  // )
+  // console.log(m)
+  if (m == 0) {m = 'i' + m, k =  y} else if (m == Infinity) {k =  x} else {m = 'i' + m, k = -1}
+  k = k != -1 ? `.c${k}` : ''
+  dq(`path#${m}${k}`).setAttribute('stroke', li.c), cont.abort(), contp.abort() } else est(l) } else est(l) }
+
+
+nto = (li, a = () => {}) => { if (li.u != 2) a() }
+
+sod = (tre, el) => { if (el.classList[1] == undefined) el.classList.add('i')
+  nto(li, () => { if (el.id  != 'm') { k = `#${li.i}`; if (!li.u) k += ` > #${el.id}`
+    dq(k).remove() } li.u++ } )
+  if (li.o == 'up') { if (y == 2) eap(el)
+    // console.log('liu', li, el)
+    el.setAttribute('transform', `translate(${trcx[x]}, ${trcy[y]}) scale(${sca})`)
+    li[el.id] = [y, x], arr[y][x] = 1, fin(ll) }
+
+  else { if (y == 0) eap(el)
+    // console.log('lid', li, el)
+    setAttributes(el, {'x': `${gat(tre, 'x')}`, 'y': `${gat(tre, 'y')}`})
+    li[el.id] = [y, x], arr[y][x] = 2, fin(ul) } }
+
+
+trf = (tre, el
+  // event
+  // , callback fn
+) => {
+  // console.log('li2', li, el, tre)
+i = tre.id
+// console.log('li3', li, el)
+
+  x = +i[0], y = +i[1], t = arr[y][x], k = li[el.id], x0 = k[0], y0 = k[1], to = x0 - y, b = y0 - x
+  if (!t) { if (x0 != -1) { d2 = to*to + b*b
+      // console.log('d2 k - y x0 - x', d2, k, y,x0, x)
+    if (d2 <= 2) { if ((x0 == 1 | y0 == 1) & x0 != y0 & Math.abs(to/b) == 1) {
+      // console.log('x0 - x', x0, x)
+    } else { arr[x0][y0] = 0
+      sod(tre, el) } } } else sod(tre, el) } }
+
+mo = mou + "down", arr = ar(3, 3), t = 0
+
+
+ rou = (li) => {
+  cont = new AbortController()
+  contp = new AbortController()
+
+  // 3 p ids + li.p
+  modo('.' + li.o).forEach(el => {
+    el.addEventListener(mo, (
+  // event, callback fn, not 2, line
+) => { eap(el)
+  controller.abort() // remove listener
+ k = el, console.log('li1', li, el, arr)
+cont.abort()
+cont = new AbortController()
+  modo('#tr > rect').forEach(tre => {
+    tre.addEventListener(mo, () => {
+    // console.log('lim2', li, el, k)
+    trf(tre, el) }, { signal: cont.signal } )
+  // , console.log('li1', li, el, tre)
+  // tre.t = tre
+} ) }, { signal: contp.signal } ) } ) }, rou(li) </script> </body> </html>
