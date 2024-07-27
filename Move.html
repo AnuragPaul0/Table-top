@@ -180,9 +180,10 @@ fin = (l) => { if (modo(`.${li.o}.i`).length == 3) {
     -(li.m[0] - li.r[0]) / (li.m[1] - li.r[1])
   // )
   // console.log(m)
-  if (m == 0) {m = 'i' + m, k =  y} else if (m == Infinity) {k =  x} else {m = 'i' + m, k = -1}
+  if (m == 0) {m = 'i' + m, k =  y} else if (Math.abs(m) == Infinity) {k =  x} else {m = 'i' + m, k = -1}
   k = k != -1 ? `.c${k}` : ''
-  dq(`path#${m}${k}`).setAttribute('stroke', li.c), cont.abort(), contp.abort() } else est(l) } else est(l) }
+  dq(`path#${m}${k}`).setAttribute('stroke', li.c), cont.abort(), contp.abort() } else est(l) }
+  else est(l) }
 
 
 nto = (li, a = () => {}) => { if (li.u != 2) a() }
